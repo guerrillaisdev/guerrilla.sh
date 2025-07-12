@@ -1,0 +1,64 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "blog": "Blog",
+    "contact": "Contact",
+    "products": "Products",
+    "tuning": "Tuning"
+  },
+  "Home": {
+    "title": "High-Performance Automotive Tuning",
+    "subtitle": "Unleash the true potential of your vehicle with our expert remote tuning services. We specialize in custom ECU calibrations for a wide range of performance cars.",
+    "servicesTitle": "Our Services",
+    "services": {
+      "remoteTuning": "Remote E-Tuning",
+      "remoteTuningDesc": "Get a custom tune delivered directly to you, anywhere in the world. Our state-of-the-art remote tuning platform allows for safe, reliable, and powerful calibration without visiting a shop.",
+      "hardware": "Performance Hardware",
+      "hardwareDesc": "We offer a curated selection of high-quality performance parts and tuning hardware, including Tactrix Openport 2.0 cables, to get the most out of your vehicle."
+    },
+    "whyUsTitle": "Why Choose Guerrilla.sh?",
+    "whyUs": {
+      "expertise": "Unmatched Expertise",
+      "expertiseDesc": "With over 15 years of experience in the high-performance tuning industry, our knowledge of Subaru, Mitsubishi, and other platforms is second to none.",
+      "p2p": "Secure & Resilient",
+      "p2pDesc": "Our proprietary peer-to-peer technology ensures a direct, secure, and fault-tolerant connection for all remote tuning sessions, protecting your vehicle and data.",
+      "community": "Trusted by the Community",
+      "communityDesc": "Don't just take our word for it. Check out our map of satisfied customers across Austin and read their reviews."
+    },
+    "cta": "Ready to unlock your car's potential?",
+    "ctaButton": "Explore Our Tunes"
+  },
+  "Contact": {
+    "title": "Get In Touch",
+    "intro": "Have questions about our services or want to schedule a tuning session? Reach out to us via phone, email, or the contact form below.",
+    "phone": "Phone",
+    "email": "Email",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "submit": "Send Message"
+    }
+  },
+  "Footer": {
+    "contact": "Contact us: {phone} | {email}",
+    "language": "Hablamos Español"
+  },
+  "Blog": {
+    "title": "The Guerrilla.sh Blog",
+    "subtitle": "News, articles, and insights from the world of high-performance tuning.",
+    "readMore": "Read More"
+  },
+  "ProductsPage": {
+    "title": "Products",
+    "buyNow": "Buy Now"
+  },
+  "SuccessPage": {
+    "title": "Payment Successful!",
+    "message": "Thank you for your purchase."
+  },
+  "CancelPage": {
+    "title": "Payment Canceled",
+    "message": "Your payment was canceled. You have not been charged."
+  }
+}
