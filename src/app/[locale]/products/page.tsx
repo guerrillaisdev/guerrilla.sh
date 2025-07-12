@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { loadStripe } from '@stripe/stripe-js';
+import Image from 'next/image';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -75,7 +76,9 @@ export default function ProductsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
           <div key={product.id} className="border rounded-lg p-4 flex flex-col">
-            <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
+            <div className="relative w-full h-48 mb-4">
+              <Image src={product.image} alt={product.name} layout="fill" objectFit="cover" />
+            </div>
             <h2 className="text-xl font-semibold">{product.name}</h2>
             <p className="text-gray-600 mb-4">{product.description}</p>
             <p className="text-lg font-bold mt-auto">
