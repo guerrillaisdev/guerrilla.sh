@@ -1,0 +1,6 @@
+/* Chadson v69.0.0: Initializing global styles for Guerrilla Automotive */
+@import "tailwindcss";
+
+body {
+  @apply bg-background text-foreground;
+}

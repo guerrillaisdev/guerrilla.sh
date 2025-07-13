@@ -21,17 +21,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["jest", "node"]
+    "types": ["jest"]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/components/__tests__/Navbar.test.tsx",
-    "src/app/[locale]/__tests__/page.test.tsx",
-    "src/app/[locale]/contact/__tests__/page.test.tsx",
-    "src/app/[locale]/blog/__tests__/page.test.tsx"
-  ],
-  "exclude": ["node_modules", "cypress", "reference"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.setup.js", "src/components/**/__tests__/*.test.tsx"],
+  "exclude": ["node_modules"]
 }

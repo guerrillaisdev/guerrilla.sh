@@ -1,6 +1,0 @@
-- id: 'prod_J2534'
-  name: 'J2534 Tuning Cable'
-  description: 'A high-quality J2534 pass-thru cable for professional vehicle tuning.'
-  price: 250.00
-  currency: 'USD'
-  image: '/images/j2534-cable.jpg'
