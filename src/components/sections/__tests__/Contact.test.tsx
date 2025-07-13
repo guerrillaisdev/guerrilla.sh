@@ -49,6 +49,7 @@ describe('Contact Component', () => {
     // Check for the submit button
     const button = screen.getByRole('button', { name: /Send Message/i });
     expect(button).toBeInTheDocument();
+  });
 });
 
   describe('Form Submission', () => {

@@ -34,9 +34,11 @@ describe('/api/contact POST', () => {
   beforeEach(() => {
     // Reset mocks before each test
     sendMailMock = jest.fn<() => Promise<{ messageId: string }>>();
-    mockedNodemailer.createTransport.mockReturnValue({
+    // The `createTransport` function itself needs to be a mock that returns
+    // our desired transport object containing the mock `sendMail` function.
+    mockedNodemailer.createTransport = jest.fn().mockReturnValue({
       sendMail: sendMailMock,
-    } as any);
+    });
 
     // Set up environment variables for the test
     process.env.GMAIL_USER = 'test@gmail.com';

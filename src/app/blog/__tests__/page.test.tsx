@@ -62,7 +62,7 @@ excerpt: "A deep dive into common diesel deletes."
     // Check the first post (newest)
     expect(articles[0]).toHaveTextContent('Understanding Diesel Deletes: More Power, More Efficiency');
     expect(articles[0]).toHaveTextContent('July 14, 2025');
-    expect(articles[0]).toHaveTextContent('A deep dive into common diesel deletes.');
+    expect(articles[0]).toHaveTextContent(expect.stringContaining('A deep dive into common diesel deletes.'));
     expect(screen.getByRole('link', { name: /Understanding Diesel Deletes/i })).toHaveAttribute('href', '/blog/common-diesel-deletes');
 
     // Check the second post

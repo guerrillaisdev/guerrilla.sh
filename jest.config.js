@@ -15,9 +15,12 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/src/components/$1',
     '^@/lib/(.*)$': '<rootDir>/src/lib/$1',
+    // Mock react-markdown to prevent ESM errors
+    '^react-markdown$': '<rootDir>/__mocks__/react-markdown.tsx',
+    // Mock react-leaflet and leaflet to prevent ESM errors
+    '^react-leaflet$': '<rootDir>/__mocks__/react-leaflet.tsx',
+    '^leaflet$': '<rootDir>/__mocks__/leaflet.ts',
   },
-  // The transformIgnorePatterns is handled by the next/jest preset.
-  // Any additional transforms can be added here.
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

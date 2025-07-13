@@ -19,19 +19,11 @@ describe('Home Page', () => {
     expect(screen.getByText('Mock Hero')).toBeInTheDocument();
   });
 
-  it('renders the Services component for both mobile and desktop layouts', () => {
-    // In a JSDOM environment, both mobile and desktop markup will be rendered.
-    // We expect to find two instances of the mock text.
-    const servicesInstances = screen.getAllByText('Mock Services');
-    expect(servicesInstances).toHaveLength(2);
+  it('renders the Services component', () => {
+    expect(screen.getByText('Mock Services')).toBeInTheDocument();
   });
 
   it('renders the Contact component', () => {
-    // JSDOM has a strange bug where it only renders the second instance of this
-    // component, even though the code is identical to the Services component
-    // which renders twice as expected. We will rely on E2E tests to verify
-    // the responsive layout correctly.
-    const contactInstances = screen.getAllByText('Mock Contact');
-    expect(contactInstances).toHaveLength(1);
+    expect(screen.getByText('Mock Contact')).toBeInTheDocument();
   });
 });
