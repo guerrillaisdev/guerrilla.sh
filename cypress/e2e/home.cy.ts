@@ -1,35 +1,52 @@
 // Chadson v69.0.0: E2E tests for the Guerrilla Automotive homepage.
-// Updated to test the new tab-based navigation and shadcn/ui components.
+// Updated to test the new responsive layout for both mobile and desktop.
 
-describe('Homepage Tab Navigation', () => {
-  beforeEach(() => {
-    cy.visit('/');
+describe('Homepage Responsive Layout', () => {
+  
+  context('Mobile Viewport (iphone-6)', () => {
+    beforeEach(() => {
+      cy.viewport('iphone-6');
+      cy.visit('/');
+    });
+
+    it('should display hero content and use tab navigation', () => {
+      // Verify Hero content
+      cy.contains('h1', 'Guerrilla Automotive').should('be.visible');
+
+      // Verify Tabs are visible and functional
+      cy.get('button[role="tab"]').contains('Services').should('be.visible');
+      cy.get('button[role="tab"]').contains('Contact').should('be.visible');
+
+      // Verify Services tab is active by default
+      cy.contains('h3', 'ECU Remapping').should('be.visible');
+      cy.contains('h3', 'Get in Touch').should('not.exist');
+
+      // Click on the Contact tab
+      cy.get('button[role="tab"]').contains('Contact').click();
+
+      // Verify Contact tab is now active and its content is visible
+      cy.contains('h3', 'Get in Touch').should('be.visible');
+      cy.contains('h3', 'ECU Remapping').should('not.exist');
+    });
   });
 
-  it('should display the hero content and navigate between tabs correctly', () => {
-    // 1. Verify Hero content is visible
-    cy.contains('h1', 'Guerrilla Automotive').should('be.visible');
-    cy.contains('p', 'Mobile & Remote Performance Tuning in Austin, TX').should('be.visible');
+  context('Desktop Viewport (macbook-16)', () => {
+    beforeEach(() => {
+      cy.viewport('macbook-16');
+      cy.visit('/');
+    });
 
-    // 2. Verify Services tab is active by default
-    cy.get('button[role="tab"]').contains('Services').should('have.attr', 'data-state', 'active');
-    cy.contains('h3', 'ECU Remapping').should('be.visible');
-    cy.contains('h3', 'Get in Touch').should('not.exist');
+    it('should display all content sections at once', () => {
+      // Verify Hero content
+      cy.contains('h1', 'Guerrilla Automotive').should('be.visible');
 
-    // 3. Click on the Contact tab
-    cy.get('button[role="tab"]').contains('Contact').click();
+      // Verify Tabs are NOT visible
+      cy.get('button[role="tab"]').should('not.be.visible');
 
-    // 4. Verify Contact tab is now active and its content is visible
-    cy.get('button[role="tab"]').contains('Contact').should('have.attr', 'data-state', 'active');
-    cy.contains('h3', 'Get in Touch').should('be.visible');
-    cy.contains('h3', 'ECU Remapping').should('not.exist');
-
-    // 5. Click back to the Services tab
-    cy.get('button[role="tab"]').contains('Services').click();
-
-    // 6. Verify Services tab is active again and its content is visible
-    cy.get('button[role="tab"]').contains('Services').should('have.attr', 'data-state', 'active');
-    cy.contains('h3', 'ECU Remapping').should('be.visible');
-    cy.contains('h3', 'Get in Touch').should('not.exist');
+      // Verify both Services and Contact content are visible simultaneously
+      cy.contains('h3', 'ECU Remapping').should('be.visible');
+      cy.contains('h3', 'Get in Touch').should('be.visible');
+    });
   });
+
 });

@@ -33,9 +33,9 @@ export default function Services() {
   return (
     <div className="grid md:grid-cols-2 gap-4">
       {services.map((service) => (
-        <Card key={service.title}>
+        <Card key={service.title} className="transition-all hover:border-primary/80 hover:scale-[1.02]">
           <CardHeader>
-            <h3 className="leading-none font-semibold">{service.title}</h3>
+            <h3 className="leading-none font-semibold text-primary">{service.title}</h3>
             <CardDescription>{service.description}</CardDescription>
           </CardHeader>
         </Card>

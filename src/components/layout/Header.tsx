@@ -3,6 +3,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -13,23 +14,23 @@ import {
 
 export default function Header() {
   return (
-    <header className="border-b">
+    <header className="border-b border-b-border/40">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="text-2xl font-bold">
-          Guerrilla Automotive LLC
+          <span className="text-primary">Guerrilla</span> Automotive
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="tel:+17377472233" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "hover:text-primary transition-colors")}>
                   +1-737-747-2233
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="mailto:inquiries@guerrilla.sh" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "hover:text-primary transition-colors")}>
                   inquiries@guerrilla.sh
                 </NavigationMenuLink>
               </Link>

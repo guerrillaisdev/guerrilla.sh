@@ -9,10 +9,12 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 
 export default function Hero() {
   return (
-    <Card className="w-full border-0 shadow-none">
+    <Card className="w-full border-0 shadow-none bg-transparent">
         <CardHeader className="text-center">
-            <CardTitle className="text-4xl md:text-5xl font-bold">Guerrilla Automotive</CardTitle>
-            <CardDescription className="text-lg md:text-xl">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-blue-400 text-transparent bg-clip-text">
+              Guerrilla Automotive
+            </h1>
+            <CardDescription className="text-lg md:text-xl text-muted-foreground/80">
                 Mobile & Remote Performance Tuning in Austin, TX
             </CardDescription>
         </CardHeader>

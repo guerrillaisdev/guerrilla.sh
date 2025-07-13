@@ -19,11 +19,11 @@ export default function Contact() {
         <div className="space-y-2">
           <div>
             <p className="font-bold">Phone:</p>
-            <a href="tel:+17377472233" className="text-blue-500 hover:underline">+1-737-747-2233</a>
+            <a href="tel:+17377472233" className="text-primary hover:underline">+1-737-747-2233</a>
           </div>
           <div>
             <p className="font-bold">Email:</p>
-            <a href="mailto:inquiries@guerrilla.sh" className="text-blue-500 hover:underline">inquiries@guerrilla.sh</a>
+            <a href="mailto:inquiries@guerrilla.sh" className="text-primary hover:underline">inquiries@guerrilla.sh</a>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@ export default function Contact() {
           <Label htmlFor="message">Message</Label>
           <Textarea id="message" placeholder="Your message..." />
         </div>
-        <Button type="submit">Send Message</Button>
+        <Button type="submit" className="w-full hover:bg-primary/90 transition-colors">Send Message</Button>
       </form>
     </div>
   );
