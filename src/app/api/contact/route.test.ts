@@ -33,7 +33,7 @@ describe('/api/contact POST', () => {
 
   beforeEach(() => {
     // Reset mocks before each test
-    sendMailMock = jest.fn() as jest.Mock;
+    sendMailMock = jest.fn<() => Promise<{ messageId: string }>>();
     mockedNodemailer.createTransport.mockReturnValue({
       sendMail: sendMailMock,
     } as any);
@@ -58,11 +58,9 @@ describe('/api/contact POST', () => {
       message: 'This is a test message.',
     };
 
-    const request = new Request('http://localhost/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(mockRequestData),
-    });
+    const request = {
+      json: async () => mockRequestData,
+    } as any;
 
     sendMailMock.mockResolvedValueOnce({ messageId: '123' });
 
@@ -92,11 +90,9 @@ describe('/api/contact POST', () => {
       message: 'This is a test message.',
     };
 
-    const request = new Request('http://localhost/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(mockRequestData),
-    });
+    const request = {
+      json: async () => mockRequestData,
+    } as any;
 
     const response = await POST(request);
     const responseBody = await response.json();
@@ -113,11 +109,9 @@ describe('/api/contact POST', () => {
       message: 'This message will fail.',
     };
 
-    const request = new Request('http://localhost/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(mockRequestData),
-    });
+    const request = {
+      json: async () => mockRequestData,
+    } as any;
 
     const error = new Error('SMTP Error');
     sendMailMock.mockRejectedValueOnce(error);

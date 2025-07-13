@@ -22,6 +22,7 @@ import ServiceAreaMap from '../ServiceAreaMap';
 import { describe, it, expect, jest } from '@jest/globals';
 
 // Mock the react-leaflet library
+// This must be done AFTER imports to avoid hoisting issues where jest is undefined.
 jest.mock('react-leaflet', () => ({
   MapContainer: jest.fn(({ children, center, zoom }) => (
     <div data-testid="map-container" data-center={center.join(',')} data-zoom={zoom}>

@@ -3,8 +3,9 @@
 
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom'; // Diagnostic import
 import Contact from '../Contact';
-import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 
 // Mock the global fetch function
 const mockFetch = jest.fn();
@@ -48,9 +49,7 @@ describe('Contact Component', () => {
     // Check for the submit button
     const button = screen.getByRole('button', { name: /Send Message/i });
     expect(button).toBeInTheDocument();
-  });
-    });
-  });
+});
 
   describe('Form Submission', () => {
     beforeEach(() => {
@@ -64,7 +63,7 @@ describe('Contact Component', () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
         json: async () => ({ message: 'Message sent successfully!' }),
-      } as Response);
+      });
 
       // Act: Fill out and submit the form
       fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
@@ -88,7 +87,7 @@ describe('Contact Component', () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
         json: async () => ({ message: 'Server error, please try again.' }),
-      } as Response);
+      });
 
       // Act: Fill out and submit the form
       fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });

@@ -1,13 +1,24 @@
-// Chadson v69.0.0: Jest configuration for Guerrilla Automotive
+// Chadson v69.0.0: Standard Jest configuration for Next.js 13+
+// This configuration uses the next/jest preset to handle most of the setup automatically.
 
-module.exports = {
-  testEnvironment: 'jest-environment-jsdom',
+const nextJest = require('next/jest')
+
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+})
+
+// Add any custom config to be passed to Jest
+const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/src/components/$1',
     '^@/lib/(.*)$': '<rootDir>/src/lib/$1',
   },
-  transform: {
-    '^.+\\.(ts|tsx)$': 'babel-jest',
-  },
-};
+  // The transformIgnorePatterns is handled by the next/jest preset.
+  // Any additional transforms can be added here.
+}
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(customJestConfig)
