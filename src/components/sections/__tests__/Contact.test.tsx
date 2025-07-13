@@ -2,15 +2,22 @@
 // Updated to reflect the refactoring with shadcn/ui components and a contact form.
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Contact from '../Contact';
+import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
 
-describe('Contact', () => {
-  beforeEach(() => {
-    render(<Contact />);
-  });
+// Mock the global fetch function
+const mockFetch = jest.fn();
+global.fetch = mockFetch as any;
 
-  it('renders the "Get in Touch" headline', () => {
+
+describe('Contact Component', () => {
+  describe('Initial Rendering', () => {
+    beforeEach(() => {
+      render(<Contact />);
+    });
+
+    it('renders the "Get in Touch" headline', () => {
     const headline = screen.getByRole('heading', { name: /Get in Touch/i, level: 3 });
     expect(headline).toBeInTheDocument();
   });
@@ -41,5 +48,64 @@ describe('Contact', () => {
     // Check for the submit button
     const button = screen.getByRole('button', { name: /Send Message/i });
     expect(button).toBeInTheDocument();
+  });
+    });
+  });
+
+  describe('Form Submission', () => {
+    beforeEach(() => {
+      // Reset mocks before each test
+      mockFetch.mockClear();
+      render(<Contact />);
+    });
+
+    it('successfully submits the form and shows a success message', async () => {
+      // Arrange: Mock a successful API response
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ message: 'Message sent successfully!' }),
+      } as Response);
+
+      // Act: Fill out and submit the form
+      fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
+      fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
+      fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'This is a test.' } });
+      fireEvent.click(screen.getByRole('button', { name: /Send Message/i }));
+
+      // Assert: Check for submitting state and then success state
+      expect(screen.getByRole('button', { name: /Sending.../i })).toBeDisabled();
+
+      await waitFor(() => {
+        expect(screen.getByText('Message sent successfully! We will get back to you shortly.')).toBeInTheDocument();
+      });
+
+      // Assert that the form was reset
+      expect(screen.getByLabelText(/Name/i)).toHaveValue('');
+    });
+
+    it('shows an error message if the submission fails', async () => {
+      // Arrange: Mock a failed API response
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        json: async () => ({ message: 'Server error, please try again.' }),
+      } as Response);
+
+      // Act: Fill out and submit the form
+      fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
+      fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
+      fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'This will fail.' } });
+      fireEvent.click(screen.getByRole('button', { name: /Send Message/i }));
+
+      // Assert: Check for submitting state and then error state
+      expect(screen.getByRole('button', { name: /Sending.../i })).toBeDisabled();
+
+      await waitFor(() => {
+        expect(screen.getByText('Server error, please try again.')).toBeInTheDocument();
+      });
+
+      // Assert that the button is re-enabled and form is not reset
+      expect(screen.getByRole('button', { name: /Send Message/i })).not.toBeDisabled();
+      expect(screen.getByLabelText(/Name/i)).toHaveValue('Test User');
+    });
   });
 });
