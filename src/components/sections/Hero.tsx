@@ -1,18 +1,21 @@
 // Chadson v69.0.0: Guerrilla Automotive Hero Section
-// This component will feature a compelling headline and a strong call-to-action.
+// Purpose: Display the main headline and a brief description of the business.
+// This component is designed to be the primary view when the page loads.
+// Refactored to align with shadcn/ui design system and new tab-based layout.
 
 import React from 'react';
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+
 
 export default function Hero() {
   return (
-    <section className="bg-gray-800 text-white text-center p-20">
-      <h1 className="text-5xl font-bold mb-4">Unleash Your Vehicle's True Potential</h1>
-      <p className="text-xl mb-8">
-        Professional remote and mobile tuning for performance, deletes, and more.
-      </p>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Get a Free Quote
-      </button>
-    </section>
+    <Card className="w-full border-0 shadow-none">
+        <CardHeader className="text-center">
+            <CardTitle className="text-4xl md:text-5xl font-bold">Guerrilla Automotive</CardTitle>
+            <CardDescription className="text-lg md:text-xl">
+                Mobile & Remote Performance Tuning in Austin, TX
+            </CardDescription>
+        </CardHeader>
+    </Card>
   );
 }

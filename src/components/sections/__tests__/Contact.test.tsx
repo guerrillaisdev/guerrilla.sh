@@ -1,31 +1,45 @@
 // Chadson v69.0.0: Unit tests for the Contact component.
+// Updated to reflect the refactoring with shadcn/ui components and a contact form.
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Contact from '../Contact';
 
 describe('Contact', () => {
-  it('renders the main headline', () => {
+  beforeEach(() => {
     render(<Contact />);
-    const headline = screen.getByRole('heading', { name: /Contact Us/i, level: 2 });
+  });
+
+  it('renders the "Get in Touch" headline', () => {
+    const headline = screen.getByRole('heading', { name: /Get in Touch/i, level: 3 });
     expect(headline).toBeInTheDocument();
   });
 
-  it('renders the phone number', () => {
-    render(<Contact />);
-    const phoneNumber = screen.getByText(/\+1-737-747-2233/i);
-    expect(phoneNumber).toBeInTheDocument();
+  it('renders the phone number as a link', () => {
+    const phoneLink = screen.getByRole('link', { name: /\+1-737-747-2233/i });
+    expect(phoneLink).toBeInTheDocument();
+    expect(phoneLink).toHaveAttribute('href', 'tel:+17377472233');
   });
 
-  it('renders the email address', () => {
-    render(<Contact />);
-    const emailAddress = screen.getByText(/inquiries@guerrilla.sh/i);
-    expect(emailAddress).toBeInTheDocument();
+  it('renders the email address as a link', () => {
+    const emailLink = screen.getByRole('link', { name: /inquiries@guerrilla.sh/i });
+    expect(emailLink).toBeInTheDocument();
+    expect(emailLink).toHaveAttribute('href', 'mailto:inquiries@guerrilla.sh');
   });
 
-  it('renders the map placeholder', () => {
-    render(<Contact />);
-    const mapPlaceholder = screen.getByText(/Map of Austin, TX and surrounding suburbs will be here./i);
-    expect(mapPlaceholder).toBeInTheDocument();
+  it('renders the contact form with all fields', () => {
+    // Check for form labels and corresponding inputs
+    expect(screen.getByLabelText(/Name/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Your Name/i)).toBeInTheDocument();
+
+    expect(screen.getByLabelText(/Email/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Your Email/i)).toBeInTheDocument();
+
+    expect(screen.getByLabelText(/Message/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Your message.../i)).toBeInTheDocument();
+
+    // Check for the submit button
+    const button = screen.getByRole('button', { name: /Send Message/i });
+    expect(button).toBeInTheDocument();
   });
 });
