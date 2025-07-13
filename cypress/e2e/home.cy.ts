@@ -1,5 +1,6 @@
 // Chadson v69.0.0: E2E tests for the Guerrilla Automotive homepage.
 // Updated to test the new responsive layout for both mobile and desktop.
+// V3: Added tests for contact form submission and map visibility.
 
 describe('Homepage Responsive Layout', () => {
   
@@ -51,7 +52,7 @@ describe('Homepage Responsive Layout', () => {
 
 });
 
-describe('Contact Form Submission', () => {
+describe('Contact Section', () => {
   
   it('should submit the form successfully and show a success message', () => {
     // Intercept the API call and mock a successful response
@@ -71,7 +72,7 @@ describe('Contact Form Submission', () => {
 
     cy.contains('Sending...').should('be.visible');
     cy.wait('@contactRequest');
-    cy.contains('Message sent successfully!').should('be.visible');
+    cy.contains('Message sent successfully! We will get back to you shortly.').should('be.visible');
     cy.get('input[id="name"]').should('have.value', '');
 
     // Test on mobile
@@ -86,7 +87,7 @@ describe('Contact Form Submission', () => {
 
     cy.contains('Sending...').should('be.visible');
     cy.wait('@contactRequest');
-    cy.contains('Message sent successfully!').should('be.visible');
+    cy.contains('Message sent successfully! We will get back to you shortly.').should('be.visible');
     cy.get('input[id="name"]').should('have.value', '');
   });
 
@@ -110,4 +111,16 @@ describe('Contact Form Submission', () => {
     cy.get('input[id="name"]').should('have.value', 'Cypress Fail');
   });
 
+  it('should display the service area map', () => {
+    // Test on desktop
+    cy.viewport('macbook-16');
+    cy.visit('/');
+    cy.get('.leaflet-container', { timeout: 10000 }).should('be.visible');
+
+    // Test on mobile
+    cy.viewport('iphone-6');
+    cy.visit('/');
+    cy.get('button[role="tab"]').contains('Contact').click();
+    cy.get('.leaflet-container', { timeout: 10000 }).should('be.visible');
+  });
 });

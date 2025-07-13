@@ -23,6 +23,6 @@
     },
     "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.setup.js", "src/components/**/__tests__/*.test.tsx", "src/app/__tests__/**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.setup.ts", "src/components/**/__tests__/**/*.test.tsx", "src/app/**/__tests__/**/*.test.tsx", "src/app/api/**/__tests__/**/*.test.ts"],
   "exclude": ["node_modules"]
 }
