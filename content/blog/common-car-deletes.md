@@ -16,7 +16,7 @@ Modern diesel trucks are equipped with sophisticated emissions control systems t
 *   **Exhaust Gas Recirculation (EGR) Delete:** The EGR system recirculates a portion of the exhaust gas back into the engine cylinders to reduce NOx emissions. An EGR delete can lead to a cleaner engine with less soot buildup, potentially improving performance and reliability.
 *   **Selective Catalytic Reduction (SCR) Delete:** The SCR system uses Diesel Exhaust Fluid (DEF) to convert NOx into harmless nitrogen and water. An SCR delete removes this system, which can increase power and eliminate the need for DEF fluid.
 
-**Important Note:** Deleting emissions equipment on a diesel truck is illegal for on-road use in many jurisdictions and will cause your vehicle to fail emissions tests.
+> **Important Note:** Deleting emissions equipment on a diesel truck is illegal for on-road use in many jurisdictions and will cause your vehicle to fail emissions tests.
 
 ## Common Deletes for Gasoline Cars
 
@@ -25,7 +25,7 @@ For gasoline-powered vehicles, especially muscle cars and sports cars, the focus
 *   **Muffler Delete:** This is one of the most common exhaust modifications. Removing the muffler results in a much louder and more aggressive exhaust note. While it can provide a small increase in horsepower due to reduced backpressure, the primary motivation is usually sound.
 *   **Resonator Delete:** Resonators are designed to cancel out specific sound frequencies to reduce drone and raspiness in the exhaust note. A resonator delete can make the exhaust louder and change its tone.
 
-**Legal Considerations:** Similar to diesel deletes, modifying your exhaust system by removing mufflers or catalytic converters is often illegal for street use. Always check your local laws before making any modifications.
+> **Legal Considerations:** Similar to diesel deletes, modifying your exhaust system by removing mufflers or catalytic converters is often illegal for street use. Always check your local laws before making any modifications.
 
 ## Conclusion
 

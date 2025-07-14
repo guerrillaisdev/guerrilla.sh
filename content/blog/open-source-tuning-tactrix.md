@@ -41,4 +41,4 @@ To begin your open-source tuning journey with a Tactrix OpenPort 2.0, you'll nee
 3.  The appropriate software (EcuFlash or Atlas).
 4.  A willingness to learn and research!
 
-The world of open-source tuning can be incredibly rewarding, giving you the power to unlock your vehicle's true potential. However, it's not without risks. Improper tuning can lead to engine damage, so it's crucial to start with small changes, log data extensively, and learn from the vast resources available in the community.
+> The world of open-source tuning can be incredibly rewarding, giving you the power to unlock your vehicle's true potential. However, it's not without risks. Improper tuning can lead to engine damage, so it's crucial to start with small changes, log data extensively, and learn from the vast resources available in the community.
