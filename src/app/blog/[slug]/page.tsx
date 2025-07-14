@@ -1,14 +1,14 @@
 /**
  * @file src/app/blog/[slug]/page.tsx
  * @purpose Renders a single, dynamic blog post page.
- * @version 2.0.0
+ * @version 3.0.0
  * @date 2025-07-14
  *
  * @description
  * This dynamic route fetches a specific blog post component based on the URL slug.
  * It dynamically imports the corresponding post component from the `posts` directory
- * and renders it. It also includes functions for generating static paths and
- * metadata for SEO.
+ * and renders it within a structured, readable layout. It also includes functions
+ * for generating static paths and metadata for SEO.
  *
  * @dependencies
  * - fs: For reading the list of post files for static generation.
@@ -59,22 +59,28 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const { PostComponent, metadata } = await getPost(params.slug);
 
   return (
-    <main className="container mx-auto p-4 py-12">
-      <div className="mb-8 text-center">
-        <h1 className="text-4xl font-bold mb-2">{metadata.title}</h1>
-        <p className="text-muted-foreground text-lg">
-          {new Date(metadata.date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </p>
-      </div>
-      <PostComponent />
-      <div className="mt-12 text-center">
-        <Link href="/blog" className="text-primary font-semibold hover:underline">
-          &larr; Back to Blog
-        </Link>
+    <main className="bg-background py-12">
+      <div className="container mx-auto px-4">
+        <header className="mb-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">{metadata.title}</h1>
+          <p className="text-muted-foreground text-lg">
+            Published on {new Date(metadata.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })} by {metadata.author}
+          </p>
+        </header>
+        
+        <div className="max-w-4xl mx-auto">
+          <PostComponent />
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link href="/blog" className="text-primary font-semibold hover:underline">
+            &larr; Back to All Posts
+          </Link>
+        </div>
       </div>
     </main>
   );
