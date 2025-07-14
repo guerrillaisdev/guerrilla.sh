@@ -1,20 +1,21 @@
 /**
  * @file src/app/blog/[slug]/page.tsx
  * @purpose Renders a single, dynamic blog post page.
- * @version 3.0.0
+ * @version 6.0.0
  * @date 2025-07-14
  *
  * @description
  * This dynamic route fetches a specific blog post component based on the URL slug.
- * It dynamically imports the corresponding post component from the `posts` directory
- * and renders it within a structured, readable layout. It also includes functions
- * for generating static paths and metadata for SEO.
+ * It dynamically imports the corresponding post component and renders it within a
+ * structured, readable layout that includes a dedicated header and fade-in animation.
  *
  * @dependencies
  * - fs: For reading the list of post files for static generation.
  * - path: For constructing file paths.
  * - next/link: For client-side navigation.
  * - next/navigation: For handling not-found cases.
+ * - @/components/blog/BlogHeader: The header component for blog posts.
+ * - @/components/blog/BlogLayout: The layout component for blog posts.
  */
 
 import fs from 'fs';
@@ -22,6 +23,8 @@ import path from 'path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
+import BlogHeader from '@/components/blog/BlogHeader';
+import BlogLayout from '@/components/blog/BlogLayout';
 
 const postsDirectory = path.join(process.cwd(), 'src/app/blog/posts');
 
@@ -59,29 +62,25 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const { PostComponent, metadata } = await getPost(params.slug);
 
   return (
-    <main className="bg-background py-12">
-      <div className="container mx-auto px-4">
-        <header className="mb-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">{metadata.title}</h1>
-          <p className="text-muted-foreground text-lg">
-            Published on {new Date(metadata.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })} by {metadata.author}
-          </p>
-        </header>
-        
-        <div className="max-w-4xl mx-auto">
-          <PostComponent />
-        </div>
+    <main className="bg-background">
+      <BlogHeader 
+        title={metadata.title}
+        date={metadata.date}
+        author={metadata.author}
+      />
+      <BlogLayout>
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <PostComponent />
+          </div>
 
-        <div className="mt-12 text-center">
-          <Link href="/blog" className="text-primary font-semibold hover:underline">
-            &larr; Back to All Posts
-          </Link>
+          <div className="mt-12 text-center">
+            <Link href="/blog" className="text-primary font-semibold hover:underline">
+              &larr; Back to All Posts
+            </Link>
+          </div>
         </div>
-      </div>
+      </BlogLayout>
     </main>
   );
 }
