@@ -77,7 +77,9 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             })}
           </p>
         </div>
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <div className="prose dark:prose-invert max-w-none">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
         <div className="mt-12 text-center">
           <Link href="/blog" className="text-primary font-semibold hover:underline">
             &larr; Back to Blog
