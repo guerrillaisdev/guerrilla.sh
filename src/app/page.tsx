@@ -23,7 +23,7 @@ const SectionWrapper = ({ children }: { children: React.ReactNode }) => (
 
 export default function Home() {
   return (
-    <main className="container mx-auto p-4 overflow-x-hidden">
+    <main className="container mx-auto p-4">
       <SectionWrapper>
         <Hero />
       </SectionWrapper>
